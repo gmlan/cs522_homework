@@ -27,7 +27,7 @@ public class PosService {
 	}
 
 	
-	public String[] process(String str){
-		return tagger.tag(str.split(" "));
+	public String[] process(String[] arr){
+		return tagger.tag(arr);
 	}
 }

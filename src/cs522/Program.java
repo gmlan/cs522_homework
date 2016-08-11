@@ -23,10 +23,12 @@ public class Program {
 		//read all data from db and process with POS
 		List<TwitterInfo> list = crawlerService.getAllTwitters(keyword);		
 		for (TwitterInfo twitterInfo : list) {
-			for (String string : posService.process(twitterInfo.getContent())) {
-				System.out.print(string + " ");
+			String[] contentArray  = twitterInfo.getContent().split(" ");
+			String[] tags = posService.process(contentArray);
+			for(int i = 0; i < tags.length; i++){
+				if(tags[i].startsWith("VB") || tags[i].startsWith("NN") || tags[i].startsWith("JJ"))
+					System.out.println(contentArray[i] + " -  "  + tags[i]) ;
 			}
-			System.out.println("");
 		}	
 	}
 }
